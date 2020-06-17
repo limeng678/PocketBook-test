@@ -1,23 +1,29 @@
 <template>
-    <Layout>
-       <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-      <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
-      <div>
-        type: {{type}}
-        <br/>
-        interval:{{interval}}
-      </div>
-    </Layout>
+  <Layout>
+    <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
+    <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
+    <div>
+      type: {{type}}
+      <br/>
+      interval:{{interval}}
+    </div>
+  </Layout>
 </template>
 <style scoped lang="scss">
-    ::v-deep .type-tabs-item{
+  ::v-deep .type-tabs-item {
     background: white;
-    &.selected{
+
+    &.selected {
       background: #c4c4c4;
-      &::after{
+
+      &::after {
         display: none;
       }
     }
+  }
+
+  ::v-deep .interval-tabs-item {
+    height: 48px;
   }
 </style>
 <script lang="ts">
@@ -29,13 +35,13 @@
   import recordTypeList from '@/constants/recordTypeList';
 
   @Component({
-    components:{Tabs},
+    components: {Tabs},
   })
-  export default class Statistics extends Vue{
-   type='-';
-   interval='day';
-   intervalList=intervalList;
-   recordTypeList=recordTypeList;
+  export default class Statistics extends Vue {
+    type = '-';
+    interval = 'day';
+    intervalList = intervalList;
+    recordTypeList = recordTypeList;
   }
 </script>
 
