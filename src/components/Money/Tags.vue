@@ -16,7 +16,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component,Prop} from 'vue-property-decorator';
+  import {Component} from 'vue-property-decorator';
 
   @Component
   export default class Tags extends  Vue{
@@ -65,7 +65,7 @@
         border-radius: $h/2;
         padding:0 16px;
         margin-right: 12px;
-        &.selceted{
+        &.selected{
           background: darken($bg,50%);
           color:white;
         }
