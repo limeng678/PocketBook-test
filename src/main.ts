@@ -23,3 +23,6 @@ window.onload = function () {
     window.scrollTo(0,200);
   },0)
 }
+if(document.documentElement.clientWidth>500){
+  window.alert('为保证浏览效果，建议使用手机打开')
+}
