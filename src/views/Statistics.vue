@@ -183,6 +183,9 @@
     width:430%;
     &-wrapper {
       overflow: auto;
+      &::-webkit-scrollbar{
+        display: none;
+      }
     }
   }
 
