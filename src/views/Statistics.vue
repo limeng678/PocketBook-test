@@ -41,7 +41,8 @@
       return tags.length === 0 ? '无' : tags.map(t=>t.name).join('，');
     }
     mounted(){
-      (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999;
+      const div=(this.$refs.chartWrapper as HTMLDivElement);
+      div.scrollLeft = div.scrollWidth;
     }
 
     beautify(string: string) {
@@ -73,14 +74,17 @@
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
             '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
           ],
-          axisTick:{alignWithLabel:true}
+          axisTick:{alignWithLabel:true},
+          axisLine:{lineStyle:{color:'#666'}}
         },
         yAxis: {
           type: 'value',
           show:false
         },
         series: [{
-          symbolSize:15,
+          symbol:'circle',
+          symbolSize:12,
+          itemStyle:{border:1,color:'#666',borderColor:'#666'},
           data: [
             820, 932, 901, 934, 1290, 1330, 1320,
             820, 932, 901, 934, 1290, 1330, 1320,
@@ -89,7 +93,12 @@
           ],
           type: 'line'
         }],
-        tooltip: {show: true}
+        tooltip: {
+          show: true,
+          triggerOn:'click',
+          position:'top',
+          formatter:'{c}'
+        }
       };
     }
 
