@@ -1,7 +1,9 @@
 <template>
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <Chart :options="x"/>
+    <div class="chart-wrapper" ref="chartWrapper">
+      <Chart class="chart" :options="x"/>
+    </div>
     <ol v-if="groupedList.length>0">
       <li v-for="(group,index) in groupedList" :key="index">
         <h3 class="title">{{beautify(group.title)}} <span>￥{{group.total}}</span> </h3>
@@ -38,6 +40,9 @@
     tagString(tags: Tag[]) {
       return tags.length === 0 ? '无' : tags.map(t=>t.name).join('，');
     }
+    mounted(){
+      (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999;
+    }
 
     beautify(string: string) {
       const day = dayjs(string);
@@ -57,6 +62,10 @@
 
     get x() {
       return {
+        grid:{
+          left:0,
+          right:0,
+        },
         xAxis: {
           type: 'category',
           data: [
@@ -66,7 +75,8 @@
           ]
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          show:false
         },
         series: [{
           data: [
@@ -169,4 +179,11 @@
     margin-left: 16px;
     color: #999999;
   }
+  .chart{
+    width:430%;
+    &-wrapper {
+      overflow: auto;
+    }
+  }
+
 </style>
